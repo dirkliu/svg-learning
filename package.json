@@ -1,0 +1,22 @@
+{
+  "name": "svg-learning",
+  "version": "1.0.0",
+  "description": "Svg技能学习!\u001b[C",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dirkliu/svg-learning.git"
+  },
+  "keywords": [
+    "svg"
+  ],
+  "author": "Jason",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dirkliu/svg-learning/issues"
+  },
+  "homepage": "https://github.com/dirkliu/svg-learning#readme"
+}
