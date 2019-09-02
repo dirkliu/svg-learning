@@ -74,5 +74,37 @@ T x y (or t dx dy)
 A rx ry x-axis-rotation large-arc-flag sweep-flag x y
 a rx ry x-axis-rotation large-arc-flag sweep-flag dx dy
 ```  
+rx x轴半径 
+ry y轴半径  
+x-axis-rotation x轴旋转角度  
+large-arc-flag 弧度是否大于180度，0表示小角度弧， 1表示大角弧度  
 
+### 填充和边框  
+#### Fill 和 Stroke 属性  
+* 上色
+fill属性设置对象内部的颜色;  
+stroke属性设置绘制对象的线条的颜色;  
+* 描边  
+stroke-width， stroke-linecap， stroke-linejoin， stroke-dasharray等  
+
+#### 使用CSS
+* 利用style属性插入到元素的行间  
+``` 
+<rect x="10" height="180" y="10" width="180" style="stroke: black; fill: red;"/>
+```   
+* 利用<style>设置一段样式段落。就像在html里这样的<style>一般放在<head>里，在svg里<style>则放在<defs>标签里  
+``` 
+<?xml version="1.0" standalone="no"?>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+    <style type="text/css"><![CDATA[
+       #MyRect {
+         stroke: black;
+         fill: red;
+       }
+    ]]></style>
+  </defs>
+  <rect x="10" height="180" y="10" width="180" id="MyRect"/>
+</svg>
+```
 
