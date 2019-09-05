@@ -93,8 +93,7 @@ stroke-width， stroke-linecap， stroke-linejoin， stroke-dasharray等
 <rect x="10" height="180" y="10" width="180" style="stroke: black; fill: red;"/>
 ```   
 * 利用<style>设置一段样式段落。就像在html里这样的<style>一般放在<head>里，在svg里<style>则放在<defs>标签里  
-``` 
-<?xml version="1.0" standalone="no"?>
+<pre>
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" version="1.1">
   <defs>
     <style type="text/css"><![CDATA[
@@ -106,5 +105,37 @@ stroke-width， stroke-linecap， stroke-linejoin， stroke-dasharray等
   </defs>
   <rect x="10" height="180" y="10" width="180" id="MyRect"/>
 </svg>
+</pre>
+
+### 渐变 
+#### 线性渐变(linearGradient)  
+要插入一个线性渐变，你需要在SVG文件的defs元素内部，创建一个<linearGradient> 节点  
+``` 
+<svg width="120" height="240" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+      <linearGradient id="Gradient1">
+        <stop class="stop1" offset="0%"/>
+        <stop class="stop2" offset="50%"/>
+        <stop class="stop3" offset="100%"/>
+      </linearGradient>
+      <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="red"/>
+        <stop offset="50%" stop-color="black" stop-opacity="0"/>
+        <stop offset="100%" stop-color="blue"/>
+      </linearGradient>
+      <style type="text/css"><![CDATA[
+        #rect1 { fill: url(#Gradient1); }
+        .stop1 { stop-color: red; }
+        .stop2 { stop-color: black; stop-opacity: 0; }
+        .stop3 { stop-color: blue; }
+      ]]></style>
+  </defs>
+ 
+  <rect id="rect1" x="10" y="10" rx="15" ry="15" width="100" height="100"/>
+  <rect x="10" y="120" rx="15" ry="15" width="100" height="100" fill="url(#Gradient2)"/>
+  
+</svg>
 ```
+#### 径向渐变  radialGradient  
+从一个点开始发散绘制渐变。创建径向渐变需要在文档的defs中添加一个<radialGradient>元素
 
