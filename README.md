@@ -138,4 +138,9 @@ stroke-width， stroke-linecap， stroke-linejoin， stroke-dasharray等
 ```
 #### 径向渐变  radialGradient  
 从一个点开始发散绘制渐变。创建径向渐变需要在文档的defs中添加一个<radialGradient>元素
+``` 
+<radialGradient id="Gradient" cx="60" cy="60" r="50" fx="35" fy="35" gradientUnits="userSpaceOnUse">
+```
+
+### 图案
 
