@@ -143,4 +143,5 @@ stroke-width， stroke-linecap， stroke-linejoin， stroke-dasharray等
 ```
 
 ### 图案
+<pattern>需要放在SVG文档的<defs>内部
 
