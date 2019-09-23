@@ -143,5 +143,75 @@ stroke-width， stroke-linecap， stroke-linejoin， stroke-dasharray等
 ```
 
 ### 图案
-<pattern>需要放在SVG文档的<defs>内部
+<pattern>需要放在SVG文档的<defs>内部  
+patternUnits: 用于描述我们使用的属性单元。  
+patternContentUnits: 描述了pattern元素基于基本形状使用的单元系统，这个属性默认值为userSpaceOnUse，与patternUnits属性相反，这意味着除非你至少指定其中一个属性值（patternContentUnits或patternUnits），否则在pattern中绘制的形状将与pattern元素使用的坐标系不同，当你手写这部分时会容易混淆。  
+``` 
+<pattern id="Pattern" width=".25" height=".25" patternContentUnits="objectBoundingBox">
+  <rect x="0" y="0" width=".25" height=".25" fill="skyblue"/>
+  <rect x="0" y="0" width=".125" height=".125" fill="url(#Gradient2)"/>
+  <circle cx=".125" cy=".125" r=".1" fill="url(#Gradient1)" fill-opacity="0.5"/>
+</pattern>
+```
+
+### Texts 
+在SVG中有两种截然不同的文本模式. 一种是写在图像中的文本，另一种是SVG字体。 
+``` 
+<path id="my_path" d="M 20,20 C 40,40 80,40 100,20" />
+<text>
+  <textPath xlink:href="#my_path">This text follows a curve.</textPath>
+</text>
+```  
+
+### 基础变形 
+<g>: 利用这个助手，你可以把属性赋给一整个元素集合
+``` 
+<rect x="20" y="20" width="20" height="20" transform="rotate(45)" />
+```
+
+### 剪切与遮罩  
+Clipping用来移除在别处定义的元素的部分内容。在这里，任何半透明效果都是不行的。它只能要么显示要么不显示。   
+Masking允许使用透明度和灰度值遮罩计算得的软边缘。
+#### 剪切： clip  
+``` 
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="cut-off-bottom">
+      <rect x="0" y="0" width="200" height="100" />
+    </clipPath>
+  </defs>
+  <circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" />
+</svg>
+``` 
+#### 遮罩： mask  
+``` 
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="Gradient">
+      <stop offset="0" stop-color="white" stop-opacity="0" />
+      <stop offset="1" stop-color="white" stop-opacity="1" />
+    </linearGradient>
+    <mask id="Mask">
+      <rect x="0" y="0" width="200" height="200" fill="url(#Gradient)"  />
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="green" />
+  <rect x="0" y="0" width="200" height="200" fill="red" mask="url(#Mask)" />
+</svg>
+```  
+#### 用opacity定义透明度  
+填充和描边还有两个属性是fill-opacity和stroke-opacity，分别用来控制填充和描边的不透明度。需要注意的是描边将绘制在填充的上面。因此，如果你在一个元素上设置了描边透明度，但它同时设有填充，则描边的一半应用填充色，另一半将应用背景色。  
+``` 
+<svg  width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <rect x="0" y="0" width="200" height="200" fill="blue" />
+  <circle cx="100" cy="100" r="50" stroke="yellow" stroke-width="40" stroke-opacity=".5" fill="red" />
+</svg>
+``` 
+
+
+---
+#### links
+[SVG文档](https://developer.mozilla.org/zh-CN/docs/Web/SVG)  
+[SVG教程](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial)  
+
 
