@@ -208,6 +208,15 @@ Masking允许使用透明度和灰度值遮罩计算得的软边缘。
 </svg>
 ``` 
 
+### SVG字体
+定义一个SVG字体的基础是<font>元素。
+
+### SVG工具
+* [Inkscape](https://www.inkscape.org)  
+* [Adobe Illustrator](https://www.adobe.com/products/illustrator.html)  
+* [Raphael JS](http://raphaeljs.com/)  
+一个JavaScript库，表现为浏览器编译器之间的一个抽像层。特别老的Internet Explorer版本可以用生成的VML支持。VML，一种矢量标记语言，它是SVG的两个祖先之一，从IE 5.5以来就存在了
+
 
 ---
 #### links
