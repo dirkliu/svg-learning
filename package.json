@@ -4,7 +4,8 @@
   "description": "Svg技能学习!\u001b[C",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "serve -l 80"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/dirkliu/svg-learning/issues"
   },
-  "homepage": "https://github.com/dirkliu/svg-learning#readme"
+  "homepage": "https://github.com/dirkliu/svg-learning#readme",
+  "dependencies": {
+    "serve": "^12.0.1"
+  }
 }

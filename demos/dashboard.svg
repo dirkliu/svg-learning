@@ -1,0 +1,42 @@
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lGrd1">
+      <stop offset="0%" stop-color="#5bca78" />
+      <stop offset="100%" stop-color="#ffb631" />
+    </linearGradient>
+    <linearGradient id="lGrd2">
+      <stop offset="0%" stop-color="#ffb631"/>
+      <stop offset="100%" stop-color="#f43e36" />
+    </linearGradient>
+  </defs>
+  <g stroke-width="15" stroke-linecap="round">
+    <path 
+      d="M 8 124 A 93 93 0 0 1 99 8" fill="none" stroke="url(#lGrd1)" >
+    </path>
+    <path 
+      d="M 99 8 A 93 93 0 0 1 188 124" fill="none" stroke="url(#lGrd2)">
+    </path>
+  </g>
+  <g stroke-width="16" stroke-linecap="round">
+      <path 
+      d="M 8 124 A 93 93 0 0 1 99 8" fill="none" stroke="transparent" >
+    </path>
+    <path 
+      d="M 99 8 A 93 93 0 0 1 188 124" fill="none" stroke="#eeeeee">
+    </path>
+  </g>
+
+
+  <symbol id="sym01" viewBox="0 0 150 110">
+  <circle cx="50" cy="50" r="40" stroke-width="8" stroke="red" fill="red"/>
+  <circle cx="90" cy="60" r="40" stroke-width="8" stroke="green" fill="white"/>
+</symbol>
+
+<!-- actual drawing by "use" element -->
+<use xlink:href="#sym01"
+     x="0" y="0" width="100" height="50"/>
+<use xlink:href="#sym01"
+     x="0" y="50" width="75" height="38"/>
+<use xlink:href="#sym01"
+     x="0" y="100" width="50" height="25"/>
+</svg>
