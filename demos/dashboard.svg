@@ -10,33 +10,12 @@
     </linearGradient>
   </defs>
   <g stroke-width="15" stroke-linecap="round">
+  <g stroke-width="15" stroke-linecap="round">
     <path 
-      d="M 8 124 A 93 93 0 0 1 99 8" fill="none" stroke="url(#lGrd1)" >
+      d="M 98 8 A 90 90 0 0 1 184 124" fill="none" stroke="#eeeeee">
     </path>
     <path 
-      d="M 99 8 A 93 93 0 0 1 188 124" fill="none" stroke="url(#lGrd2)">
+      d="M 12 124 A 90 90 0 0 1 98 8" fill="none" stroke="url(#lGrd1)" >
     </path>
   </g>
-  <g stroke-width="16" stroke-linecap="round">
-      <path 
-      d="M 8 124 A 93 93 0 0 1 99 8" fill="none" stroke="transparent" >
-    </path>
-    <path 
-      d="M 99 8 A 93 93 0 0 1 188 124" fill="none" stroke="#eeeeee">
-    </path>
-  </g>
-
-
-  <symbol id="sym01" viewBox="0 0 150 110">
-  <circle cx="50" cy="50" r="40" stroke-width="8" stroke="red" fill="red"/>
-  <circle cx="90" cy="60" r="40" stroke-width="8" stroke="green" fill="white"/>
-</symbol>
-
-<!-- actual drawing by "use" element -->
-<use xlink:href="#sym01"
-     x="0" y="0" width="100" height="50"/>
-<use xlink:href="#sym01"
-     x="0" y="50" width="75" height="38"/>
-<use xlink:href="#sym01"
-     x="0" y="100" width="50" height="25"/>
 </svg>

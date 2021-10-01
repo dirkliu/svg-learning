@@ -1,0 +1,80 @@
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-width="15" fill="none" stroke-linecap="round">
+    <path id="progressBg" stroke="#eeeeee"></path>
+    <path stroke="url(#lGrd1)" id="colorRing" clip-path="url(#progressClip)"></path>
+  </g>
+  
+  <defs>
+    <linearGradient id="lGrd1">
+      <stop offset="0%" stop-color="#5bca78"/>
+      <stop offset="50%" stop-color="#ffb631"/>
+      <stop offset="100%" stop-color="#f43e36"/>
+    </linearGradient>
+    <clipPath id="progressClip">
+      <path id="progressClipPath" fill="#f78936"></path>
+    </clipPath>
+  </defs>
+
+  
+  <script type="text/javascript">
+    // 半径
+    const r = 90
+    // 圆心坐标
+    const x = 98, y = 98
+    // 圆弧起止弧度(-195至15，顺时针)
+    const radRatio = Math.PI / 180
+    const startArc = radRatio * (-195)
+    const endStarc = radRatio * 15
+    // 完整圆弧的弧度（角度210）
+    const wholeArcRad = radRatio * 210
+    
+    // 起始点坐标 
+    let startX = Math.cos(startArc) * r + x
+    let startY = Math.sin(startArc) * r + y
+
+    function drawBaseCircle () {
+      let endX = Math.cos(endStarc) * r + x
+      let endY = Math.sin(endStarc) * r + y
+      let path = `M ${startX} ${startY} A ${r} ${r} 0 1 1 ${endX} ${endY}`
+      document.getElementById("progressBg").setAttribute('d', path)
+    }
+
+    function drawProgress () {
+      // 进度条的弧度大小
+      let endX = Math.cos(endStarc) * r + x
+      let endY = Math.sin(endStarc) * r + y
+      let path = `M ${startX} ${startY} A ${r} ${r} 0 1 1 ${endX} ${endY}`
+      document.getElementById("colorRing").setAttribute('d', path)
+    }
+
+    function drawClipPath (rate) {
+      const clipArcRad = rate * wholeArcRad
+      const innerX1 = Math.cos(startArc) * 82 + x
+      const innerY1 = Math.sin(startArc) * 82 + y
+      const innerX2 = Math.cos(startArc + clipArcRad) * 82 + x
+      const innerY2 = Math.sin(startArc + clipArcRad) * 82 + y
+
+      const outerX1 = Math.cos(startArc) * 98 + x
+      const outerY1 = Math.sin(startArc) * 98 + y
+      const outerX2 = Math.cos(startArc + clipArcRad) * 98 + x
+      const outerY2 = Math.sin(startArc + clipArcRad) * 98 + y
+
+      const isLargeArc = clipArcRad > Math.PI ? 1 : 0
+
+      let d = `M ${innerX1} ${innerY1} A 82 82 0 ${isLargeArc} 1 ${innerX2} ${innerY2}` +
+        `A 8 8 0 0 0 ${outerX2} ${outerY2}` + 
+        `A 98 98 0 ${isLargeArc} 0 ${outerX1} ${outerY1}` +
+        `A 8 8 0 0 0 ${innerX1} ${innerY1}`
+
+      document.getElementById("progressClipPath").setAttribute('d', d)
+    }
+
+    drawBaseCircle()
+    // drawClipPath(0.3)
+    // drawClipPath(0.5)
+    drawClipPath(0.7)
+    // drawClipPath(0.9)
+    // drawClipPath(1)
+    drawProgress()
+  </script>
+</svg>
