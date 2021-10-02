@@ -1,0 +1,61 @@
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+
+<path id="progressBottom" width="196" height="129" stroke="url(#progressPattern)" fill="none" stroke-width="15" stroke-linecap="round" d="M 11.066675633983849 121.29371405922687 A 90 90 0 1 1 184.93332436601614 121.29371405922689">
+  </path>
+
+
+
+  <defs>
+    <pattern id="progressPattern" x="0" y="0" width="196" height="129" patternContentUnits="userSpaceOnUse">
+      <path id="progressPatternPath" stroke="#ff00ff" fill="none" stroke-width="15" stroke-linecap="round" d="M 11.066675633983849 121.29371405922687 A 90 90 0 1 1 184.93332436601614 121.29371405922689">
+  </path>
+    </pattern>
+  </defs>
+
+  <script>
+    // 半径
+    const r = 90
+    // 圆心坐标
+    const x = 98, y = 98
+    // 圆弧起止弧度(-195至15，顺时针)
+    const radRatio = Math.PI / 180
+    const startArc = radRatio * (-195)
+    const endStarc = radRatio * 15
+    // 完整圆弧的弧度（角度210）
+    const wholeArcRad = radRatio * 210
+    
+    // 起始点坐标 
+    let startX = Math.cos(startArc) * r + x
+    let startY = Math.sin(startArc) * r + y  
+
+    function drawProgressBottom () {
+      let endX = Math.cos(startArc + wholeArcRad) * r + x
+      let endY = Math.sin(startArc + wholeArcRad) * r + y
+      let path = `M ${startX} ${startY} A ${r} ${r} 0 1 1 ${endX} ${endY}`
+      document.getElementById("progressBottom").setAttribute('d', path)
+    }
+
+    function drawPatternPath () {
+      const innerX1 = Math.cos(startArc) * 82 + x
+      const innerY1 = Math.sin(startArc) * 82 + y
+      const innerX2 = Math.cos(startArc + wholeArcRad) * 82 + x
+      const innerY2 = Math.sin(startArc + wholeArcRad) * 82 + y
+
+      const outerX1 = Math.cos(startArc) * 98 + x
+      const outerY1 = Math.sin(startArc) * 98 + y
+      const outerX2 = Math.cos(startArc + wholeArcRad) * 98 + x
+      const outerY2 = Math.sin(startArc + wholeArcRad) * 98 + y
+
+      let d = `M ${innerX1} ${innerY1} A 82 82 0 1 1 ${innerX2} ${innerY2}` +
+        `A 8 8 0 0 0 ${outerX2} ${outerY2}` + 
+        `A 98 98 0 1 0 ${outerX1} ${outerY1}` +
+        `A 8 8 0 0 0 ${innerX1} ${innerY1}`
+
+      document.getElementById("progressPatternPath").setAttribute('d', d)
+    }
+
+    // drawPatternPath()
+
+    // drawProgressBottom()
+  </script>
+</svg>
