@@ -1,14 +1,19 @@
 <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
 
-<path id="progressBottom" width="196" height="129" stroke="url(#progressPattern)" fill="none" stroke-width="15" stroke-linecap="round" d="M 11.066675633983849 121.29371405922687 A 90 90 0 1 1 184.93332436601614 121.29371405922689">
-  </path>
-
-
+  <circle cx="98" cy="98" r="98" fill="url(#progressPattern)"/>
 
   <defs>
-    <pattern id="progressPattern" x="0" y="0" width="196" height="129" patternContentUnits="userSpaceOnUse">
-      <path id="progressPatternPath" stroke="#ff00ff" fill="none" stroke-width="15" stroke-linecap="round" d="M 11.066675633983849 121.29371405922687 A 90 90 0 1 1 184.93332436601614 121.29371405922689">
-  </path>
+    <linearGradient id="lGrd1">
+      <stop offset="0%" stop-color="#5bca78" />
+      <stop offset="50%" stop-color="#ffb631" />
+      <stop offset="100%" stop-color="#f43e36" />
+    </linearGradient>
+    <pattern id="progressPattern" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <path d="
+        M 0 0.5 A 0.5 0.5 0 0 1 1 0.5 A 0.5 0.5 0 0 1 0 0.5
+        M 0.08163 0.5 A 0.41837 0.41837 0 0 1 0.91837 0.5 A 0.41837 0.41837 0 0 1 0.08163 0.5" 
+        fill="url(#lGrd1)" fill-rule="evenodd">
+      </path>
     </pattern>
   </defs>
 

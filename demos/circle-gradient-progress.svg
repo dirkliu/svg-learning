@@ -1,0 +1,122 @@
+<svg width="196" height="196" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 196">
+  <defs>
+    <linearGradient id="lGrd1">
+      <stop offset="0%" stop-color="#5bca78" />
+      <stop offset="50%" stop-color="#ffb631" />
+      <stop offset="100%" stop-color="#f43e36" />
+    </linearGradient>
+
+    <path id="text6hPath" fill="none"></path>
+  </defs>
+  <g stroke-width="15" stroke-linecap="round" fill="none">
+    <path id="bottomCircle" stroke="#eeeeee">
+    </path>
+    <path id="progressPath" stroke="url(#lGrd1)">
+      <animate id="progressAnimate" attributeName="stroke-dashoffset" dur="1s" fill="freeze"></animate>
+    </path>
+    
+
+    <circle id="ball" r="5" fill="#fff">
+      <animateMotion id="ballAnimate" dur="1s" fill="freeze"></animateMotion>
+    </circle>
+  </g>
+
+  <g id="scaleMark" font-size="12px" fill="#999" text-anchor="middle" dominant-baseline="middle" >
+    <text>0h</text>
+    <text>1h</text>
+    <text>2h</text>
+    <text>3h</text>
+    <text>4h</text>
+    <text>5h</text>
+    <text dominant-baseline="middle" text-anchor="start">
+      <textPath href="#text6hPath">6h以上</textPath>
+    </text>
+  </g>
+  
+  <script type="text/javascript">
+    // 半径
+    const r = 90
+    // 圆心坐标
+    const x = 98, y = 98
+    // 圆弧起止弧度(-195至15，顺时针)
+    const radRatio = Math.PI / 180
+    const startArcRad = radRatio * (-195)
+    // 完整圆弧的弧度（角度210）
+    const fullArcRad = radRatio * 210
+    
+    // 起始点坐标 
+    let startX = Math.cos(startArcRad) * r + x
+    let startY = Math.sin(startArcRad) * r + y
+
+    // 进度100%时的坐标
+    let fullEndX = Math.cos(startArcRad + fullArcRad) * r + x
+    let fullEndY = Math.sin(startArcRad + fullArcRad) * r + y
+
+    // 进度100%时的路径
+    let path = `M ${startX} ${startY} A ${r} ${r} 0 1 1 ${fullEndX} ${fullEndY}`
+
+    // 绘制底部灰色圆盘
+    document.getElementById("bottomCircle").setAttribute('d', path)
+
+    function drawProgress (rate) {
+      if (rate) {
+      let progressPath = document.getElementById("progressPath")
+      let fullLength = fullArcRad * r
+      progressPath.setAttribute("stroke-dasharray", fullLength)
+      progressPath.setAttribute("stroke-dashoffset", fullLength * (1 - rate))
+
+      let progressAnimate = document.getElementById("progressAnimate")
+      progressAnimate.setAttribute('from', fullLength)
+      progressAnimate.setAttribute('to', fullLength * (1 - rate))
+      progressPath.setAttribute('d', path)
+      }
+    }
+
+    function drawBallAnimate (rate) {
+      let ball = document.getElementById("ball")
+      let ballAnimate = document.getElementById("ballAnimate")
+      let endX =  Math.cos(startArcRad + rate * fullArcRad) * r + x
+      let endY = Math.sin(startArcRad + rate * fullArcRad) * r + y
+      let isLargeArc = rate * fullArcRad > Math.PI / 2 ? 1 : 0
+      ballAnimate.setAttribute("path", `M ${startX} ${startY} A ${r} ${r} 0 ${isLargeArc} 1 ${endX} ${endY}`)
+    }
+
+    function drawScale () {
+      let textR = 75
+      let texts = document.getElementById("scaleMark").children
+      // 使用for循环报错，不知道为什么
+      texts[0].setAttribute("x", Math.cos(startArcRad) * textR + x)
+      texts[0].setAttribute("y", Math.sin(startArcRad) * textR + y)
+
+      texts[1].setAttribute("x", Math.cos(startArcRad + fullArcRad / 6 * 1) * textR + x)
+      texts[1].setAttribute("y", Math.sin(startArcRad + fullArcRad / 6 * 1) * textR + y)
+
+      texts[2].setAttribute("x", Math.cos(startArcRad + fullArcRad / 6 * 2) * textR + x + 2)
+      texts[2].setAttribute("y", Math.sin(startArcRad + fullArcRad / 6 * 2) * textR + y)
+
+      texts[3].setAttribute("x", Math.cos(startArcRad + fullArcRad / 6 * 3) * textR + x)
+      texts[3].setAttribute("y", Math.sin(startArcRad + fullArcRad / 6 * 3) * textR + y)
+
+      texts[4].setAttribute("x", Math.cos(startArcRad + fullArcRad / 6 * 4) * textR + x - 2)
+      texts[4].setAttribute("y", Math.sin(startArcRad + fullArcRad / 6 * 4) * textR + y )
+
+      texts[5].setAttribute("x", Math.cos(startArcRad + fullArcRad / 6 * 5) * textR + x)
+      texts[5].setAttribute("y", Math.sin(startArcRad + fullArcRad / 6 * 5) * textR + y)
+
+      let text6hPathDom = document.getElementById("text6hPath")
+      let text6hStartX = Math.cos(startArcRad + fullArcRad - Math.PI * 1 / 9) * textR + x
+      let text6hStartY = Math.sin(startArcRad + fullArcRad - Math.PI * 1 / 9) * 80 + y
+
+      let text6hEndX = Math.cos(startArcRad + fullArcRad + Math.PI * 1 / 9) * textR + x
+      let text6hEndY = Math.sin(startArcRad + fullArcRad + Math.PI * 1 / 9) * textR + y
+      let text6hPath = `M ${text6hStartX} ${text6hStartY} A ${textR} ${textR} 0 0 1 ${text6hEndX} ${text6hEndY}`
+      text6hPathDom.setAttribute('d', text6hPath)
+      // texts[6].setAttribute("x", Math.cos(startArcRad + fullArcRad) * 80 + x)
+      // texts[6].setAttribute("y", Math.sin(startArcRad + fullArcRad) * 80 + y)
+    }
+
+    drawProgress(0.6)
+    drawBallAnimate(0.6)
+    drawScale()
+  </script>
+</svg>
