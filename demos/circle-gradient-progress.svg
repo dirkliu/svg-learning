@@ -29,20 +29,20 @@
     <text>4h</text>
     <text>5h</text>
     <text dominant-baseline="middle" text-anchor="start">
-      <textPath href="#text6hPath">6h以上</textPath>
+      <textPath href="#text6hPath">6h<tspan font-size="10px" >以上</tspan></textPath>
     </text>
   </g>
   
-  <script type="text/javascript">
+  <script>
     // 半径
     const r = 90
     // 圆心坐标
     const x = 98, y = 98
     // 圆弧起止弧度(-195至15，顺时针)
     const radRatio = Math.PI / 180
-    const startArcRad = radRatio * (-195)
+    const startArcRad = radRatio * (-192)
     // 完整圆弧的弧度（角度210）
-    const fullArcRad = radRatio * 210
+    const fullArcRad = radRatio * 204
     
     // 起始点坐标 
     let startX = Math.cos(startArcRad) * r + x
@@ -77,14 +77,23 @@
       let ballAnimate = document.getElementById("ballAnimate")
       let endX =  Math.cos(startArcRad + rate * fullArcRad) * r + x
       let endY = Math.sin(startArcRad + rate * fullArcRad) * r + y
-      let isLargeArc = rate * fullArcRad > Math.PI / 2 ? 1 : 0
+      let isLargeArc = rate * fullArcRad > Math.PI ? 1 : 0
+      console.log('isLargeArc:', isLargeArc)
       ballAnimate.setAttribute("path", `M ${startX} ${startY} A ${r} ${r} 0 ${isLargeArc} 1 ${endX} ${endY}`)
     }
 
     function drawScale () {
       let textR = 75
-      let texts = document.getElementById("scaleMark").children
+      let svg = document.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'svg')[0]
+      let texts = svg.getElementById("scaleMark").children
+      console.log('texts:', texts)
+
       // 使用for循环报错，不知道为什么
+      <!--for (var i = 0; i < 6; i++) {
+        texts[i].setAttribute("x", Math.cos(startArcRad + fullArcRad / 6 * i) * textR + x)
+        texts[i].setAttribute("y", Math.sin(startArcRad + fullArcRad / 6 * i) * textR + y)
+      }-->
+
       texts[0].setAttribute("x", Math.cos(startArcRad) * textR + x)
       texts[0].setAttribute("y", Math.sin(startArcRad) * textR + y)
 
@@ -104,19 +113,19 @@
       texts[5].setAttribute("y", Math.sin(startArcRad + fullArcRad / 6 * 5) * textR + y)
 
       let text6hPathDom = document.getElementById("text6hPath")
-      let text6hStartX = Math.cos(startArcRad + fullArcRad - Math.PI * 1 / 9) * textR + x
-      let text6hStartY = Math.sin(startArcRad + fullArcRad - Math.PI * 1 / 9) * 80 + y
+      let text6hStartX = Math.cos(startArcRad + fullArcRad - Math.PI * 1 / 12) * textR + x
+      let text6hStartY = Math.sin(startArcRad + fullArcRad - Math.PI * 1 / 12) * 80 + y
 
-      let text6hEndX = Math.cos(startArcRad + fullArcRad + Math.PI * 1 / 9) * textR + x
-      let text6hEndY = Math.sin(startArcRad + fullArcRad + Math.PI * 1 / 9) * textR + y
+      let text6hEndX = Math.cos(startArcRad + fullArcRad + Math.PI * 1 / 12) * textR + x
+      let text6hEndY = Math.sin(startArcRad + fullArcRad + Math.PI * 1 / 12) * textR + y
       let text6hPath = `M ${text6hStartX} ${text6hStartY} A ${textR} ${textR} 0 0 1 ${text6hEndX} ${text6hEndY}`
       text6hPathDom.setAttribute('d', text6hPath)
       // texts[6].setAttribute("x", Math.cos(startArcRad + fullArcRad) * 80 + x)
       // texts[6].setAttribute("y", Math.sin(startArcRad + fullArcRad) * 80 + y)
     }
 
-    drawProgress(0.6)
-    drawBallAnimate(0.6)
+    drawProgress(0.01)
+    drawBallAnimate(0.01)
     drawScale()
   </script>
 </svg>
