@@ -1,9 +1,9 @@
 <svg width="196" height="196" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 196">
   <defs>
     <linearGradient id="lGrd1">
-      <stop offset="0%" stop-color="#5bca78" />
-      <stop offset="50%" stop-color="#ffb631" />
-      <stop offset="100%" stop-color="#f43e36" />
+      <stop offset="0%" stop-color="#1BAB42"/>
+      <stop offset="50%" stop-color="#EE9F0F" />
+      <stop offset="100%" stop-color="#E72A0E" />
     </linearGradient>
 
     <path id="text6hPath" fill="none"></path>
@@ -124,8 +124,8 @@
       // texts[6].setAttribute("y", Math.sin(startArcRad + fullArcRad) * 80 + y)
     }
 
-    drawProgress(0.01)
-    drawBallAnimate(0.01)
+    drawProgress(0.8)
+    drawBallAnimate(0.8)
     drawScale()
   </script>
 </svg>
