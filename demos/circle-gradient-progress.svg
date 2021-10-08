@@ -2,7 +2,12 @@
   <defs>
     <linearGradient id="lGrd1">
       <stop offset="0%" stop-color="#1BAB42"/>
+      <stop offset="10%" stop-color="#85c363"/>
+      <stop offset="20%" stop-color="#bfbe4c"/>
       <stop offset="50%" stop-color="#EE9F0F" />
+      <stop offset="60%" stop-color="#ffb631" />
+      <stop offset="70%" stop-color="#feac31" />
+      <stop offset="80%" stop-color="#fb8833" />
       <stop offset="100%" stop-color="#E72A0E" />
     </linearGradient>
 
